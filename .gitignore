@@ -1,0 +1,15 @@
+wp-config.php
+.env
+.env.*
+*.sql
+*.sql.gz
+*.tar
+*.zip
+*.log
+.DS_Store
+wp-admin/
+wp-includes/
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backups/
