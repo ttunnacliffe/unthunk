@@ -1,0 +1,1348 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: quins\n"
+"POT-Creation-Date: 2014-04-26 19:58+0100\n"
+"PO-Revision-Date: 2014-04-26 19:59+0100\n"
+"Last-Translator: genethic <lauramoreno1436@gmail.com>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../Metabox/inc/field.php:185
+msgid "+"
+msgstr ""
+
+#: ../Metabox/inc/field.php:202
+msgid "&#8211;"
+msgstr ""
+
+#: ../Metabox/inc/fields/button.php:35
+msgid "Click me"
+msgstr ""
+
+#: ../Metabox/inc/fields/file-advanced.php:23
+msgid "Select Files"
+msgstr ""
+
+#: ../Metabox/inc/fields/file-input.php:17
+msgid "Select File"
+msgstr ""
+
+#: ../Metabox/inc/fields/file-input.php:40
+msgid "Select"
+msgstr ""
+
+#: ../Metabox/inc/fields/file-input.php:42
+#: ../ReduxFramework/ReduxCore/inc/fields/background/field_background.php:312
+#: ../ReduxFramework/ReduxCore/inc/fields/media/field_media.php:161
+#: ../ReduxFramework/ReduxCore/inc/fields/multi_text/field_multi_text.php:75
+#: ../ReduxFramework/ReduxCore/inc/fields/multi_text/field_multi_text.php:79
+#: ../ReduxFramework/ReduxCore/inc/fields/multi_text/field_multi_text.php:82
+#: ../ReduxFramework/ReduxCore/inc/fields/slides/field_slides.php:128
+#: ../ReduxFramework/ReduxCore/inc/fields/slides/field_slides.php:192
+msgid "Remove"
+msgstr ""
+
+#: ../Metabox/inc/fields/file.php:19
+#, php-format
+msgid "You may only upload maximum %d file"
+msgstr ""
+
+#: ../Metabox/inc/fields/file.php:20
+#, php-format
+msgid "You may only upload maximum %d files"
+msgstr ""
+
+#: ../Metabox/inc/fields/file.php:70
+msgid "Error: Cannot delete file"
+msgstr ""
+
+#: ../Metabox/inc/fields/image-advanced.php:22
+msgid "Select Images"
+msgstr ""
+
+#: ../Metabox/inc/fields/map.php:48
+msgid "Find Address"
+msgstr ""
+
+#: ../Metabox/inc/fields/oembed.php:54
+msgid "Embed HTML not available."
+msgstr ""
+
+#: ../Metabox/inc/fields/oembed.php:76
+msgid "Preview"
+msgstr ""
+
+#: ../Metabox/inc/fields/post.php:52
+msgid "Post"
+msgstr ""
+
+#: ../Metabox/inc/fields/post.php:66 ../Metabox/inc/fields/taxonomy.php:40
+#: ../Metabox/inc/fields/user.php:62
+#, php-format
+msgid "Select a %s"
+msgstr ""
+
+#: ../Metabox/inc/fields/user.php:54
+msgid "User"
+msgstr ""
+
+#: ../Metabox/inc/meta-box.php:241
+msgid "Please correct the errors highlighted below and try again."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/extensions/customizer/extension_customizer.php:402
+#: ../ReduxFramework/ReduxCore/framework.php:1583
+msgid "You have changes that are not saved. Would you like to save them now?"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/extensions/customizer/extension_customizer.php:403
+#: ../ReduxFramework/ReduxCore/framework.php:1584
+msgid "Are you sure? Resetting will lose all custom values."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/extensions/customizer/extension_customizer.php:404
+#: ../ReduxFramework/ReduxCore/framework.php:1586
+msgid ""
+"Your current options will be replaced with the values of this preset. Would "
+"you like to proceed?"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/extensions/customizer/extension_customizer.php:435
+msgid "You have changes that are not saved.  Would you like to save them now?"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/extensions/customizer/extension_customizer.php:436
+msgid "Are you sure?  Resetting will lose all custom values."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/extensions/customizer/extension_customizer.php:437
+msgid ""
+"Your current options will be replaced with the values of this preset.  Would "
+"you like to proceed?"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:122
+#: ../ReduxFramework/ReduxCore/framework.php:128
+#: ../ReduxFramework/ReduxCore/framework.php:331
+#: ../ReduxFramework/ReduxCore/framework.php:334
+#: ../ReduxFramework/ReduxCore/framework.php:1236
+msgid "Options"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:328
+#, php-format
+msgid "Options panel created using %1$s"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:328
+msgid "Redux Framework"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:499
+msgid "Dismiss"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:1155
+#: ../ReduxFramework/ReduxCore/framework.php:1156
+#: ../ReduxFramework/ReduxCore/framework.php:2734
+msgid "Import / Export"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:1167
+#: ../ReduxFramework/ReduxCore/framework.php:1168
+#: ../ReduxFramework/ReduxCore/framework.php:2750
+#: ../ReduxFramework/ReduxCore/framework.php:2865
+msgid "Options Object"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:1179
+#: ../ReduxFramework/ReduxCore/framework.php:1180
+#: ../ReduxFramework/ReduxCore/framework.php:2764
+#: ../ReduxFramework/ReduxCore/framework.php:2883
+msgid "System Info"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:1585
+msgid "Are you sure? Resetting will lose all custom values in this section."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:1821
+msgid "Hints"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:1822
+msgid "<p>"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:1926
+msgid "Default"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2601
+msgid "Warning- This options panel will not work properly without javascript!"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2663
+msgid "Expand"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2665
+#: ../ReduxFramework/ReduxCore/framework.php:2933
+msgid "Save Changes"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2667
+#: ../ReduxFramework/ReduxCore/framework.php:2935
+msgid "Reset Section"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2669
+#: ../ReduxFramework/ReduxCore/framework.php:2937
+msgid "Reset All"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2672
+#: ../ReduxFramework/ReduxCore/framework.php:2940
+msgid "Working..."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2683
+msgid "Settings Imported!"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2689
+msgid "Settings Saved!"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2696
+msgid "Settings have changed, you should save them!"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2697
+msgid "error(s) were found!"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2698
+msgid "warning(s) were found!"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2801
+msgid "Import / Export Options"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2802
+msgid "Import Options"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2803
+msgid "Import from file"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2803
+msgid "Import from URL"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2812
+msgid ""
+"Input your backup file below and hit Import to restore your sites options "
+"from a backup."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2826
+msgid ""
+"Input the URL to another sites options set and hit Import to load the "
+"options from that site."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2837
+msgid "Import"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2837
+msgid ""
+"WARNING! This will overwrite all existing option values, please proceed with "
+"caution!"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2840
+msgid "Export Options"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2846
+msgid ""
+"Here you can copy/download your current option settings. Keep this safe as "
+"you can use it as a backup should anything go wrong, or you can use it to "
+"restore your settings on this site (or any other site)."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2851
+msgid "Copy"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2851
+msgid "Download"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2851
+msgid "Copy Link"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/framework.php:2872
+msgid "Show Object in Javascript Console Object"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/background/field_background.php:118
+#: ../ReduxFramework/ReduxCore/inc/fields/color/field_color.php:72
+#: ../ReduxFramework/ReduxCore/inc/fields/color_gradient/field_color_gradient.php:81
+#: ../ReduxFramework/ReduxCore/inc/fields/color_gradient/field_color_gradient.php:91
+#: ../ReduxFramework/ReduxCore/inc/fields/color_rgba/field_color_rgba.php:84
+msgid "Transparent"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/background/field_background.php:135
+msgid "Background Repeat"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/background/field_background.php:151
+msgid "Background Clip"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/background/field_background.php:167
+msgid "Background Origin"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/background/field_background.php:182
+msgid "Background Size"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/background/field_background.php:197
+msgid "Background Attachment"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/background/field_background.php:217
+msgid "Background Position"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/background/field_background.php:272
+#: ../ReduxFramework/ReduxCore/inc/fields/media/field_media.php:116
+msgid "No media selected"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/background/field_background.php:306
+#: ../ReduxFramework/ReduxCore/inc/fields/media/field_media.php:155
+#: ../ReduxFramework/ReduxCore/inc/fields/slides/field_slides.php:121
+#: ../ReduxFramework/ReduxCore/inc/fields/slides/field_slides.php:190
+msgid "Upload"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/border/field_border.php:112
+#: ../ReduxFramework/ReduxCore/inc/fields/spacing/field_spacing.php:172
+msgid "All"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/border/field_border.php:125
+#: ../ReduxFramework/ReduxCore/inc/fields/spacing/field_spacing.php:196
+msgid "Top"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/border/field_border.php:132
+#: ../ReduxFramework/ReduxCore/inc/fields/spacing/field_spacing.php:203
+msgid "Right"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/border/field_border.php:139
+#: ../ReduxFramework/ReduxCore/inc/fields/spacing/field_spacing.php:210
+msgid "Bottom"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/border/field_border.php:146
+#: ../ReduxFramework/ReduxCore/inc/fields/spacing/field_spacing.php:217
+msgid "Left"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/border/field_border.php:162
+msgid "Border style"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/color_gradient/field_color_gradient.php:73
+msgid "From "
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/color_gradient/field_color_gradient.php:84
+msgid "To "
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/dimensions/field_dimensions.php:139
+msgid "Width"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/dimensions/field_dimensions.php:155
+msgid "height"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/dimensions/field_dimensions.php:168
+#: ../ReduxFramework/ReduxCore/inc/fields/dimensions/field_dimensions.php:169
+#: ../ReduxFramework/ReduxCore/inc/fields/spacing/field_spacing.php:227
+#: ../ReduxFramework/ReduxCore/inc/fields/spacing/field_spacing.php:228
+msgid "Units"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/gallery/field_gallery.php:77
+msgid "Add/Edit Gallery"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/gallery/field_gallery.php:78
+msgid "Clear Gallery"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/group/field_group.php:82
+msgid "New "
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/group/field_group.php:125
+msgid "Delete"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/group/field_group.php:129
+msgid "Add"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/link_color/field_link_color.php:89
+msgid "Regular"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/link_color/field_link_color.php:93
+msgid "Hover"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/link_color/field_link_color.php:97
+msgid "Visited"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/link_color/field_link_color.php:101
+msgid "Active"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/multi_text/field_multi_text.php:65
+msgid "Add More"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/password/field_password.php:55
+msgid "Password"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/password/field_password.php:56
+msgid "Username"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/select/field_select.php:79
+#: ../ReduxFramework/ReduxCore/inc/fields/select_image/field_select_image.php:58
+msgid "Select an item"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/select/field_select.php:120
+#: ../ReduxFramework/ReduxCore/inc/fields/select_image/field_select_image.php:133
+msgid "No items of this type were found."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/slides/field_slides.php:133
+#: ../ReduxFramework/ReduxCore/inc/fields/slides/field_slides.php:197
+#: ../inc/theme-options.php:408 ../inc/theme-options.php:633
+#: ../inc/theme-options.php:682 ../inc/theme-options.php:717
+msgid "Title"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/slides/field_slides.php:135
+#: ../ReduxFramework/ReduxCore/inc/fields/slides/field_slides.php:199
+#: ../inc/metabox.php:71
+msgid "Description"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/slides/field_slides.php:137
+#: ../ReduxFramework/ReduxCore/inc/fields/slides/field_slides.php:201
+#: ../inc/metabox.php:152
+msgid "URL"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/slides/field_slides.php:168
+#: ../ReduxFramework/ReduxCore/inc/fields/slides/field_slides.php:231
+msgid "Delete Slide"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/slides/field_slides.php:234
+msgid "Add Slide"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/switch/field_switch.php:42
+msgid "On"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/switch/field_switch.php:49
+msgid "Off"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:158
+msgid "Font family"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:185
+msgid "Standard Fonts"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:193
+msgid "Custom WebFonts"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:228
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:232
+msgid "Font style"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:232
+msgid "Style"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:260
+msgid "Font subsets"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:261
+msgid "Subsets"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:261
+msgid "Font script"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:277
+msgid "Size"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:285
+msgid "Height"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:293
+msgid "Word Spacing"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:301
+msgid "Letter Spacing"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:309
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:310
+msgid "Text Align"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:337
+msgid "Backup Font Family"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:357
+msgid "Font color"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/fields/typography/field_typography.php:695
+msgid "Google Webfonts"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/tracking.php:63
+msgid "Help improve Our Panel"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/tracking.php:64
+msgid ""
+"Please helps us improve our panel by allowing us to gather anonymous usage "
+"stats so we know which configurations, plugins and themes to test with."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/tracking.php:69
+msgid "Allow tracking"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/tracking.php:74
+msgid "Do not allow tracking"
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/validation/color/validation_color.php:15
+#: ../ReduxFramework/ReduxCore/inc/validation/color_rgba/validation_color_rgba.php:15
+#: ../ReduxFramework/ReduxCore/inc/validation/colorrgba/validation_colorrgba.php:15
+msgid "This field must be a valid color value."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/validation/comma_numeric/validation_comma_numeric.php:15
+msgid ""
+"You must provide a comma separated list of numerical values for this option."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/validation/date/validation_date.php:15
+msgid "This field must be a valid date."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/validation/email/validation_email.php:15
+#: ../ReduxFramework/ReduxCore/inc/validation/email_not_empty/validation_email_not_empty.php:15
+msgid "You must provide a valid email for this option."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/validation/no_html/validation_no_html.php:15
+msgid ""
+"You must not enter any HTML in this field, all HTML tags have been removed."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/validation/no_special_chars/validation_no_special_chars.php:15
+msgid ""
+"You must not enter any special characters in this field, all special "
+"characters have been removed."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/validation/not_empty/validation_not_empty.php:15
+msgid "This field cannot be empty. Please provide a value."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/validation/numeric/validation_numeric.php:15
+msgid "You must provide a numerical value for this option."
+msgstr ""
+
+#: ../ReduxFramework/ReduxCore/inc/validation/url/validation_url.php:15
+msgid "You must provide a valid URL for this option."
+msgstr ""
+
+#: ../ReduxFramework/class.redux-plugin.php:282
+msgid "Redux Framework has an embedded demo."
+msgstr ""
+
+#: ../ReduxFramework/class.redux-plugin.php:282
+msgid "Click here to activate the sample config file."
+msgstr ""
+
+#: ../ReduxFramework/class.redux-plugin.php:389
+msgid "Deactivate Demo Mode"
+msgstr ""
+
+#: ../ReduxFramework/class.redux-plugin.php:391
+msgid "Activate Demo Mode"
+msgstr ""
+
+#: ../comments.php:11
+msgid "No Comment"
+msgstr ""
+
+#: ../comments.php:11
+msgid "<span>1</span> Comment"
+msgstr ""
+
+#: ../comments.php:11
+msgid "<span>%</span> Comments"
+msgstr ""
+
+#: ../comments.php:23
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: ../comments.php:24
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: ../comments.php:29
+msgid "Comments are closed."
+msgstr ""
+
+#: ../content-none.php:2
+msgid ""
+"No results were found. You can use the searchform to find a related post."
+msgstr ""
+
+#: ../content.php:13 ../single.php:26
+msgid "0 comments"
+msgstr ""
+
+#: ../content.php:13 ../single.php:26
+msgid "1 comment"
+msgstr ""
+
+#: ../content.php:13 ../single.php:26
+#, php-format
+msgid "% comments"
+msgstr ""
+
+#: ../content.php:27 ../page.php:27 ../single.php:40
+msgid "Posted by "
+msgstr ""
+
+#: ../content.php:30 ../single.php:43
+msgid "In "
+msgstr ""
+
+#: ../content.php:43 ../page.php:43 ../single.php:56
+msgid "Next &rarr;"
+msgstr ""
+
+#: ../content.php:44 ../page.php:44 ../single.php:57
+msgid "&larr; Previous"
+msgstr ""
+
+#: ../functions.php:74
+msgid "Main menu left"
+msgstr ""
+
+#: ../functions.php:74
+msgid "Main menu right"
+msgstr ""
+
+#: ../functions.php:78
+msgid "Default Sidebar"
+msgstr ""
+
+#: ../functions.php:86
+msgid "Footer Sidebar"
+msgstr ""
+
+#: ../inc/breadcrumbs.php:154
+msgid "( Page"
+msgstr ""
+
+#: ../inc/comments.php:17
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: ../inc/comments.php:25
+#, php-format
+msgid "%1$s"
+msgstr ""
+
+#: ../inc/comments.php:26
+msgid "<i class=\"fa fa-pencil\"></i>Edit"
+msgstr ""
+
+#: ../inc/comments.php:28
+msgid "<i class=\"fa fa-repeat\"></i>Reply"
+msgstr ""
+
+#: ../inc/comments.php:52
+msgid "Leave a Reply"
+msgstr ""
+
+#: ../inc/comments.php:53
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: ../inc/comments.php:54
+msgid "Cancel Reply"
+msgstr ""
+
+#: ../inc/comments.php:55
+msgid "Comment"
+msgstr ""
+
+#: ../inc/comments.php:58
+msgid "Add your text here"
+msgstr ""
+
+#: ../inc/comments.php:63
+#, php-format
+msgid ""
+"Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of "
+"this account\">Log out?</a>"
+msgstr ""
+
+#: ../inc/comments.php:71
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr ""
+
+#: ../inc/comments.php:82 ../inc/theme-options.php:437
+msgid "Name"
+msgstr ""
+
+#: ../inc/comments.php:85
+msgid "Email"
+msgstr ""
+
+#: ../inc/comments.php:89
+msgid "Subject"
+msgstr ""
+
+#: ../inc/metabox.php:22
+msgid "Hide"
+msgstr ""
+
+#: ../inc/metabox.php:29
+msgid "Hide in home page"
+msgstr ""
+
+#: ../inc/metabox.php:40
+msgid "Show Popup"
+msgstr ""
+
+#: ../inc/metabox.php:47
+msgid "Show image on lightbox on click"
+msgstr ""
+
+#: ../inc/metabox.php:58
+msgid "Extra info"
+msgstr ""
+
+#: ../inc/metabox.php:65
+msgid "Intro text"
+msgstr ""
+
+#: ../inc/metabox.php:81
+msgid "Tags"
+msgstr ""
+
+#: ../inc/metabox.php:88
+msgid "Tag 1"
+msgstr ""
+
+#: ../inc/metabox.php:94
+msgid "Tag 2"
+msgstr ""
+
+#: ../inc/metabox.php:104
+msgid "Project Details"
+msgstr ""
+
+#: ../inc/metabox.php:111
+msgid "Category"
+msgstr ""
+
+#: ../inc/metabox.php:117
+msgid "Client"
+msgstr ""
+
+#: ../inc/metabox.php:123
+msgid "Technologies"
+msgstr ""
+
+#: ../inc/metabox.php:129
+msgid "Date"
+msgstr ""
+
+#: ../inc/metabox.php:139
+msgid "Project Demo"
+msgstr ""
+
+#: ../inc/metabox.php:146
+msgid "Text"
+msgstr ""
+
+#: ../inc/metabox.php:162
+msgid "Text for home page"
+msgstr ""
+
+#: ../inc/metabox.php:169
+msgid "Text 1"
+msgstr ""
+
+#: ../inc/metabox.php:175
+msgid "Text 2"
+msgstr ""
+
+#: ../inc/post-types.php:84
+msgid "Search filters"
+msgstr ""
+
+#: ../inc/post-types.php:85
+msgid "All filters"
+msgstr ""
+
+#: ../inc/post-types.php:86
+msgid "Parent filter"
+msgstr ""
+
+#: ../inc/post-types.php:87
+msgid "Parent filter:"
+msgstr ""
+
+#: ../inc/post-types.php:88
+msgid "Edit filter"
+msgstr ""
+
+#: ../inc/post-types.php:89
+msgid "Update filter"
+msgstr ""
+
+#: ../inc/post-types.php:90
+msgid "Add New filter"
+msgstr ""
+
+#: ../inc/post-types.php:91
+msgid "New Genre filter"
+msgstr ""
+
+#: ../inc/post-types.php:92
+msgid "Filters"
+msgstr ""
+
+#: ../inc/theme-options.php:59
+msgid "General"
+msgstr ""
+
+#: ../inc/theme-options.php:84
+msgid "Footer Text"
+msgstr ""
+
+#: ../inc/theme-options.php:93
+msgid "Tracking Code"
+msgstr ""
+
+#: ../inc/theme-options.php:94
+msgid ""
+"Paste your Google Analytics (or other) tracking code here. This will be "
+"added into the header."
+msgstr ""
+
+#: ../inc/theme-options.php:100
+msgid "Breadcrumbs"
+msgstr ""
+
+#: ../inc/theme-options.php:105
+msgid "Show current"
+msgstr ""
+
+#: ../inc/theme-options.php:106
+msgid "Display current post/page/category title in breadcrumbs."
+msgstr ""
+
+#: ../inc/theme-options.php:112
+msgid "Show home link"
+msgstr ""
+
+#: ../inc/theme-options.php:113
+msgid "Show the link to the home page."
+msgstr ""
+
+#: ../inc/theme-options.php:119
+msgid "Show title"
+msgstr ""
+
+#: ../inc/theme-options.php:120
+msgid "Show the title attribute for links."
+msgstr ""
+
+#: ../inc/theme-options.php:126
+msgid "Delimiter"
+msgstr ""
+
+#: ../inc/theme-options.php:127
+msgid "Delimiter between crumbs."
+msgstr ""
+
+#: ../inc/theme-options.php:134
+msgid "Home page text"
+msgstr ""
+
+#: ../inc/theme-options.php:135
+msgid "Text for home page link."
+msgstr ""
+
+#: ../inc/theme-options.php:142
+msgid "Category page text"
+msgstr ""
+
+#: ../inc/theme-options.php:143
+#, php-format
+msgid "Text for category page link. Use %s to display category name."
+msgstr ""
+
+#: ../inc/theme-options.php:150
+msgid "Search page text"
+msgstr ""
+
+#: ../inc/theme-options.php:151
+#, php-format
+msgid "Text for home page link. Use %s to display search term."
+msgstr ""
+
+#: ../inc/theme-options.php:158
+msgid "Tags page text"
+msgstr ""
+
+#: ../inc/theme-options.php:159
+#, php-format
+msgid "Text for tags page link. Use %s to display tag name."
+msgstr ""
+
+#: ../inc/theme-options.php:166
+msgid "Author page text"
+msgstr ""
+
+#: ../inc/theme-options.php:167
+#, php-format
+msgid "Text for author page link. Use %s to display author name."
+msgstr ""
+
+#: ../inc/theme-options.php:174
+msgid "Error page text"
+msgstr ""
+
+#: ../inc/theme-options.php:175
+msgid "Text for error page link."
+msgstr ""
+
+#: ../inc/theme-options.php:185
+msgid "Media"
+msgstr ""
+
+#: ../inc/theme-options.php:192
+msgid "Logo"
+msgstr ""
+
+#: ../inc/theme-options.php:194
+msgid "Upload your logo"
+msgstr ""
+
+#: ../inc/theme-options.php:201
+msgid "Favicon"
+msgstr ""
+
+#: ../inc/theme-options.php:203
+msgid "Ideal dimensions: 32x32 - 64x64"
+msgstr ""
+
+#: ../inc/theme-options.php:210
+msgid "iPhone Icon"
+msgstr ""
+
+#: ../inc/theme-options.php:212
+msgid "Ideal dimensions: 57x57"
+msgstr ""
+
+#: ../inc/theme-options.php:219
+msgid "iPhone Retina Icon"
+msgstr ""
+
+#: ../inc/theme-options.php:221
+msgid "Ideal dimensions: 114x114"
+msgstr ""
+
+#: ../inc/theme-options.php:228
+msgid "iPad Icon"
+msgstr ""
+
+#: ../inc/theme-options.php:230
+msgid "Ideal dimensions: 72x72"
+msgstr ""
+
+#: ../inc/theme-options.php:237
+msgid "iPad Retina Icon"
+msgstr ""
+
+#: ../inc/theme-options.php:239
+msgid "Ideal dimensions: 144x144"
+msgstr ""
+
+#: ../inc/theme-options.php:246
+msgid "Styling Options"
+msgstr ""
+
+#: ../inc/theme-options.php:253
+msgid "Body Background"
+msgstr ""
+
+#: ../inc/theme-options.php:262
+msgid "Primary color"
+msgstr ""
+
+#: ../inc/theme-options.php:271
+msgid "Secondary color"
+msgstr ""
+
+#: ../inc/theme-options.php:280
+msgid "Typography"
+msgstr ""
+
+#: ../inc/theme-options.php:285
+msgid "Body"
+msgstr ""
+
+#: ../inc/theme-options.php:301
+msgid "Headers"
+msgstr ""
+
+#: ../inc/theme-options.php:316
+msgid "Slider Caption"
+msgstr ""
+
+#: ../inc/theme-options.php:334
+msgid "Slider"
+msgstr ""
+
+#: ../inc/theme-options.php:339
+msgid "Animation Speed"
+msgstr ""
+
+#: ../inc/theme-options.php:348
+msgid "Direction Nav"
+msgstr ""
+
+#: ../inc/theme-options.php:349
+msgid "Show / hide direction nav."
+msgstr ""
+
+#: ../inc/theme-options.php:355
+msgid "Control Nav"
+msgstr ""
+
+#: ../inc/theme-options.php:356
+msgid "Show / hide control nav."
+msgstr ""
+
+#: ../inc/theme-options.php:403
+msgid "Services"
+msgstr ""
+
+#: ../inc/theme-options.php:416 ../inc/theme-options.php:444
+#: ../inc/theme-options.php:651 ../inc/theme-options.php:725
+msgid "Content"
+msgstr ""
+
+#: ../inc/theme-options.php:424
+msgid "Service Pages"
+msgstr ""
+
+#: ../inc/theme-options.php:425
+msgid "Choose which pages will be displayed in the services"
+msgstr ""
+
+#: ../inc/theme-options.php:432
+msgid "Clients"
+msgstr ""
+
+#: ../inc/theme-options.php:451 ../inc/theme-options.php:660
+msgid "Button text"
+msgstr ""
+
+#: ../inc/theme-options.php:459 ../inc/theme-options.php:669
+msgid "Button link"
+msgstr ""
+
+#: ../inc/theme-options.php:468
+msgid "Client 1"
+msgstr ""
+
+#: ../inc/theme-options.php:475
+msgid "Client 1 link"
+msgstr ""
+
+#: ../inc/theme-options.php:484
+msgid "Client 2"
+msgstr ""
+
+#: ../inc/theme-options.php:492
+msgid "Client 2 link"
+msgstr ""
+
+#: ../inc/theme-options.php:501
+msgid "Client 3"
+msgstr ""
+
+#: ../inc/theme-options.php:508
+msgid "Client 3 link"
+msgstr ""
+
+#: ../inc/theme-options.php:517
+msgid "Client 4"
+msgstr ""
+
+#: ../inc/theme-options.php:524
+msgid "Client 4 link"
+msgstr ""
+
+#: ../inc/theme-options.php:533
+msgid "Client 5"
+msgstr ""
+
+#: ../inc/theme-options.php:540
+msgid "Client 5 link"
+msgstr ""
+
+#: ../inc/theme-options.php:549
+msgid "Client 6"
+msgstr ""
+
+#: ../inc/theme-options.php:556
+msgid "Client 6 link"
+msgstr ""
+
+#: ../inc/theme-options.php:565
+msgid "Client 7"
+msgstr ""
+
+#: ../inc/theme-options.php:572
+msgid "Client 7 link"
+msgstr ""
+
+#: ../inc/theme-options.php:581
+msgid "Client 8"
+msgstr ""
+
+#: ../inc/theme-options.php:588
+msgid "Client 8 link"
+msgstr ""
+
+#: ../inc/theme-options.php:597
+msgid "Client 9"
+msgstr ""
+
+#: ../inc/theme-options.php:604
+msgid "Client 9 link"
+msgstr ""
+
+#: ../inc/theme-options.php:614
+msgid "Quotes"
+msgstr ""
+
+#: ../inc/theme-options.php:621
+msgid "Quote Pages"
+msgstr ""
+
+#: ../inc/theme-options.php:622
+msgid "Choose which pages will be displayed in the quote section"
+msgstr ""
+
+#: ../inc/theme-options.php:628
+msgid "Portfolio"
+msgstr ""
+
+#: ../inc/theme-options.php:641
+msgid "Call to action"
+msgstr ""
+
+#: ../inc/theme-options.php:642
+msgid "Activate for more options"
+msgstr ""
+
+#: ../inc/theme-options.php:677
+msgid "Extra Info"
+msgstr ""
+
+#: ../inc/theme-options.php:690
+msgid "Column 1"
+msgstr ""
+
+#: ../inc/theme-options.php:703
+msgid "Column 2"
+msgstr ""
+
+#: ../inc/theme-options.php:712
+msgid "About"
+msgstr ""
+
+#: ../inc/theme-options.php:731
+msgid "Members info"
+msgstr ""
+
+#: ../inc/theme-options.php:732
+msgid "Show team members."
+msgstr ""
+
+#: ../inc/theme-options.php:743
+msgid "Members Pages"
+msgstr ""
+
+#: ../inc/theme-options.php:744
+msgid "Choose which pages will be displayed in the team members section"
+msgstr ""
+
+#: ../inc/theme-options.php:751
+msgid "Blog"
+msgstr ""
+
+#: ../inc/theme-options.php:756
+msgid "Excerpt Lenght"
+msgstr ""
+
+#: ../inc/theme-options.php:757
+msgid "Select the number of words to show in the excerpts."
+msgstr ""
+
+#: ../inc/theme-options.php:766
+msgid "Show author info after post content."
+msgstr ""
+
+#: ../inc/theme-options.php:776
+msgid "Contact Form"
+msgstr ""
+
+#: ../inc/theme-options.php:781
+msgid "Contact Title"
+msgstr ""
+
+#: ../inc/theme-options.php:788
+msgid "Contact Email"
+msgstr ""
+
+#: ../inc/theme-options.php:789
+msgid ""
+"Add your email address. All emails from Contact Forms will be sent to this "
+"address."
+msgstr ""
+
+#: ../inc/theme-options.php:796
+msgid "Success message"
+msgstr ""
+
+#: ../inc/theme-options.php:804
+msgid "Custom CSS/JS"
+msgstr ""
+
+#: ../inc/theme-options.php:809
+msgid "CSS Code"
+msgstr ""
+
+#: ../inc/theme-options.php:810
+msgid "Add your custom CSS code."
+msgstr ""
+
+#: ../inc/theme-options.php:818
+msgid "JS Code"
+msgstr ""
+
+#: ../inc/theme-options.php:819
+msgid "Add your custom JS code."
+msgstr ""
+
+#: ../inc/theme-options.php:851 ../inc/theme-options.php:852
+msgid "Theme Options"
+msgstr ""
+
+#: ../inc/widgets.php:14
+msgid "Display popular posts."
+msgstr ""
+
+#: ../inc/widgets.php:18
+msgid "Popular posts (T-one)"
+msgstr ""
+
+#: ../inc/widgets.php:56 ../inc/widgets.php:118
+msgid "Title:"
+msgstr ""
+
+#: ../inc/widgets.php:62 ../inc/widgets.php:124
+msgid "Number of posts:"
+msgstr ""
+
+#: ../inc/widgets.php:76
+msgid "Display recent posts."
+msgstr ""
+
+#: ../inc/widgets.php:80
+msgid "Recent posts (T-one)"
+msgstr ""
+
+#: ../search.php:13
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
