@@ -10,7 +10,6 @@
         $description = $intro->have_posts() ? get_post_meta( $intro->posts[0]->ID, 't_one_description', true ) : '';
         ?>
         <p><?php echo esc_html( $description ?: "Unthunk is an identifier for Trevor Tunnacliffe's musical endeavours." ); ?></p>
-        <a class="un-button" href="#portfolio">Explore releases</a>
         </div>
     </section>
     <section id="portfolio" class="un-section" aria-labelledby="releases-heading">
