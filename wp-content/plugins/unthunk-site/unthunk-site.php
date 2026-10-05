@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Unthunk Site
  * Description: Preserves Unthunk releases, tracks, legacy URLs and the contact form independently of the theme.
- * Version: 1.0.2
+ * Version: 1.1.0
  * License: GPL-2.0-or-later
  */
 defined( 'ABSPATH' ) || exit;
@@ -97,3 +97,70 @@ function unthunk_contact_submit() {
 }
 add_action( 'admin_post_unthunk_contact', 'unthunk_contact_submit' );
 add_action( 'admin_post_nopriv_unthunk_contact', 'unthunk_contact_submit' );
+
+// Musicians are independent of the theme; title, featured image and editor hold
+// the name, image and optional description.
+add_action( 'init', function () {
+    register_post_type( 'musician', array(
+        'labels' => array( 'name' => 'Musicians', 'singular_name' => 'Musician', 'add_new_item' => 'Add Musician', 'edit_item' => 'Edit Musician' ),
+        'public' => true, 'show_in_rest' => true, 'menu_icon' => 'dashicons-groups',
+        'rewrite' => array( 'slug' => 'musicians', 'with_front' => false ),
+        'supports' => array( 'title', 'editor', 'thumbnail', 'revisions', 'page-attributes' ),
+    ) );
+}, 20 );
+add_filter( 'enter_title_here', function ( $text, $post ) { return $post->post_type === 'musician' ? 'Name' : $text; }, 10, 2 );
+add_action( 'add_meta_boxes_musician', function () {
+    add_meta_box( 'unthunk-musician-details', 'Musician details', function ( $post ) {
+        wp_nonce_field( 'unthunk_musician', 'unthunk_musician_nonce' );
+        echo '<p><label for="unthunk-instrument">Instrument</label><br><input class="widefat" id="unthunk-instrument" name="unthunk_instrument" value="' . esc_attr( get_post_meta( $post->ID, '_unthunk_instrument', true ) ) . '"></p>';
+        echo '<p><label><input type="checkbox" name="unthunk_musician_homepage" value="1" ' . checked( get_post_meta( $post->ID, '_unthunk_musician_homepage', true ) !== '0', true, false ) . '> Include on homepage</label></p>';
+        echo '<p class="description">Use the title for Name, the featured image for Image, and the main editor for an optional description. This checkbox only controls the homepage.</p>';
+    }, 'musician', 'side', 'high' );
+} );
+add_action( 'save_post_musician', function ( $id ) {
+    if ( wp_is_post_revision( $id ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ! current_user_can( 'edit_post', $id ) || empty( $_POST['unthunk_musician_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['unthunk_musician_nonce'] ) ), 'unthunk_musician' ) ) { return; }
+    update_post_meta( $id, '_unthunk_instrument', sanitize_text_field( wp_unslash( $_POST['unthunk_instrument'] ?? '' ) ) );
+    update_post_meta( $id, '_unthunk_musician_homepage', isset( $_POST['unthunk_musician_homepage'] ) ? '1' : '0' );
+} );
+add_filter( 'manage_musician_posts_columns', function ( $columns ) { $columns['unthunk_instrument'] = 'Instrument'; $columns['unthunk_homepage'] = 'Homepage'; return $columns; } );
+add_action( 'manage_musician_posts_custom_column', function ( $column, $id ) {
+    if ( $column === 'unthunk_instrument' ) { echo esc_html( get_post_meta( $id, '_unthunk_instrument', true ) ); }
+    if ( $column === 'unthunk_homepage' ) { echo get_post_meta( $id, '_unthunk_musician_homepage', true ) === '0' ? 'No' : 'Yes'; }
+}, 10, 2 );
+// One-time migration includes every child profile, even those absent from the menu.
+// IDs, slugs, publication status and full original content are retained.
+add_action( 'admin_init', function () {
+    if ( ! current_user_can( 'manage_options' ) || get_option( 'unthunk_musicians_migrated_v1' ) ) { return; }
+    $parent = get_page_by_path( 'musicians' );
+    if ( ! $parent ) { return; }
+    $profiles = get_posts( array( 'post_type' => 'page', 'post_parent' => $parent->ID, 'post_status' => array( 'publish', 'draft', 'private', 'pending', 'future' ), 'numberposts' => -1, 'orderby' => 'menu_order', 'order' => 'ASC' ) );
+    $locations = get_nav_menu_locations();
+    $items = ! empty( $locations['primary'] ) ? wp_get_nav_menu_items( $locations['primary'] ) : array();
+    $rank = array(); foreach ( (array) $items as $item ) { $rank[absint( $item->object_id )] = $item->menu_order; }
+    foreach ( $profiles as $profile ) {
+        $original = $profile->post_content;
+        add_post_meta( $profile->ID, '_unthunk_original_profile_content', $original, true );
+        $image = get_post_thumbnail_id( $profile->ID );
+        if ( ! $image && preg_match( '/<img[^>]+src=["\x27]([^"\x27]+)/i', $original, $match ) ) {
+            $url = preg_replace( '/-\d+x\d+(?=\.[^.]+$)/', '', html_entity_decode( $match[1] ) );
+            $url = preg_replace( '#https?://(?:stg\.)?unthunk\.ca#', home_url(), $url );
+            $image = attachment_url_to_postid( $url );
+        }
+        if ( ! $image && preg_match( '/wp-image-(\d+)/', $original, $match ) ) { $image = absint( $match[1] ); }
+        if ( $image ) { set_post_thumbnail( $profile->ID, $image ); }
+        $text = preg_replace( '#<a\b[^>]*>\s*<img\b[^>]*>\s*</a>|<img\b[^>]*>#is', '', $original );
+        $text = trim( preg_replace( '#<!--.*?-->|<hr\b[^>]*>|<figure\b[^>]*>\s*</figure>#is', '', $text ) );
+        $plain = trim( wp_strip_all_tags( $text ) );
+        // Short legacy bios contain just an instrument; longer prose stays editable.
+        $instrument = strlen( $plain ) <= 90 ? $plain : '';
+        if ( $profile->post_name === 'trevor-tunnacliffe' ) { $instrument = 'Bass guitar, guitar, baritone guitar'; }
+        update_post_meta( $profile->ID, '_unthunk_instrument', $instrument );
+        update_post_meta( $profile->ID, '_unthunk_musician_homepage', '1' );
+        wp_update_post( array( 'ID' => $profile->ID, 'post_type' => 'musician', 'post_parent' => 0, 'post_content' => $instrument === $plain ? '' : $text, 'menu_order' => $rank[$profile->ID] ?? ( 100 + $profile->menu_order ) ) );
+        foreach ( (array) $items as $item ) {
+            if ( absint( $item->object_id ) === $profile->ID && $item->type === 'post_type' ) { update_post_meta( $item->ID, '_menu_item_object', 'musician' ); }
+        }
+    }
+    update_option( 'unthunk_musicians_migrated_v1', 1 );
+    flush_rewrite_rules();
+} );

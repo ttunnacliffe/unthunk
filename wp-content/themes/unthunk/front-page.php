@@ -31,17 +31,15 @@
             <?php if ( unthunk_option( 'cta_button_url' ) ) : ?><a href="<?php echo esc_url( unthunk_option( 'cta_button_url' ) ); ?>"><?php echo esc_html( unthunk_option( 'cta_button_text', 'Get in touch' ) ); ?></a><?php endif; ?></div>
         <?php endif; ?>
     </section>
-    <?php if ( unthunk_option( 'about_content' ) || unthunk_option( 'members_pages' ) ) : ?>
+    <?php if ( unthunk_option( 'about_content' ) || post_type_exists( 'musician' ) ) : ?>
     <section id="about" class="un-section">
         <div class="un-copy"><h2><?php echo esc_html( unthunk_option( 'about_title', 'About Unthunk' ) ); ?></h2>
         <?php echo wp_kses_post( wpautop( unthunk_option( 'about_content' ) ) ); ?></div>
-        <?php $member_ids = array_filter( array_map( 'absint', (array) unthunk_option( 'members_pages', array() ) ) );
-        if ( $member_ids ) : $members = new WP_Query( array( 'post_type' => 'page', 'post__in' => $member_ids, 'orderby' => 'post__in', 'posts_per_page' => -1 ) ); ?>
-        <div class="un-members">
+        <?php $members = new WP_Query( array( 'post_type' => 'musician', 'posts_per_page' => -1, 'orderby' => array( 'menu_order' => 'ASC', 'title' => 'ASC' ), 'meta_query' => array( 'relation' => 'OR', array( 'key' => '_unthunk_musician_homepage', 'compare' => 'NOT EXISTS' ), array( 'key' => '_unthunk_musician_homepage', 'value' => '0', 'compare' => '!=' ) ) ) ); ?>
+        <?php if ( $members->have_posts() ) : ?><div class="un-members">
         <?php while ( $members->have_posts() ) : $members->the_post(); ?>
-            <article class="un-member"><h3><?php the_title(); ?></h3><?php the_content(); ?></article>
-        <?php endwhile; wp_reset_postdata(); ?></div>
-        <?php endif; ?>
+            <article class="un-member"><a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'medium' ); ?><h3><?php the_title(); ?></h3></a><p><?php echo esc_html( get_post_meta( get_the_ID(), '_unthunk_instrument', true ) ); ?></p><?php the_content(); ?></article>
+        <?php endwhile; wp_reset_postdata(); ?></div><?php endif; ?>
     </section><?php endif; ?>
     <section id="news" class="un-section">
         <h2>News</h2><div class="un-grid">
