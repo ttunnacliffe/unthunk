@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Unthunk Site
  * Description: Preserves Unthunk releases, tracks, legacy URLs and the contact form independently of the theme.
- * Version: 1.1.0
+ * Version: 1.1.2
  * License: GPL-2.0-or-later
  */
 defined( 'ABSPATH' ) || exit;
@@ -113,6 +113,7 @@ add_action( 'add_meta_boxes_musician', function () {
     add_meta_box( 'unthunk-musician-details', 'Musician details', function ( $post ) {
         wp_nonce_field( 'unthunk_musician', 'unthunk_musician_nonce' );
         echo '<p><label for="unthunk-instrument">Instrument</label><br><input class="widefat" id="unthunk-instrument" name="unthunk_instrument" value="' . esc_attr( get_post_meta( $post->ID, '_unthunk_instrument', true ) ) . '"></p>';
+        echo '<p><label><input type="checkbox" name="unthunk_musician_active" value="1" ' . checked( get_post_meta( $post->ID, '_unthunk_musician_active', true ), '1', false ) . '> Active</label></p>';
         echo '<p><label><input type="checkbox" name="unthunk_musician_homepage" value="1" ' . checked( get_post_meta( $post->ID, '_unthunk_musician_homepage', true ) !== '0', true, false ) . '> Include on homepage</label></p>';
         echo '<p class="description">Use the title for Name, the featured image for Image, and the main editor for an optional description. This checkbox only controls the homepage.</p>';
     }, 'musician', 'side', 'high' );
@@ -120,11 +121,13 @@ add_action( 'add_meta_boxes_musician', function () {
 add_action( 'save_post_musician', function ( $id ) {
     if ( wp_is_post_revision( $id ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ! current_user_can( 'edit_post', $id ) || empty( $_POST['unthunk_musician_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['unthunk_musician_nonce'] ) ), 'unthunk_musician' ) ) { return; }
     update_post_meta( $id, '_unthunk_instrument', sanitize_text_field( wp_unslash( $_POST['unthunk_instrument'] ?? '' ) ) );
+    update_post_meta( $id, '_unthunk_musician_active', isset( $_POST['unthunk_musician_active'] ) ? '1' : '0' );
     update_post_meta( $id, '_unthunk_musician_homepage', isset( $_POST['unthunk_musician_homepage'] ) ? '1' : '0' );
 } );
-add_filter( 'manage_musician_posts_columns', function ( $columns ) { $columns['unthunk_instrument'] = 'Instrument'; $columns['unthunk_homepage'] = 'Homepage'; return $columns; } );
+add_filter( 'manage_musician_posts_columns', function ( $columns ) { $columns['unthunk_instrument'] = 'Instrument'; $columns['unthunk_active'] = 'Active'; $columns['unthunk_homepage'] = 'Homepage'; return $columns; } );
 add_action( 'manage_musician_posts_custom_column', function ( $column, $id ) {
     if ( $column === 'unthunk_instrument' ) { echo esc_html( get_post_meta( $id, '_unthunk_instrument', true ) ); }
+    if ( $column === 'unthunk_active' ) { echo get_post_meta( $id, '_unthunk_musician_active', true ) === '1' ? 'Yes' : 'No'; }
     if ( $column === 'unthunk_homepage' ) { echo get_post_meta( $id, '_unthunk_musician_homepage', true ) === '0' ? 'No' : 'Yes'; }
 }, 10, 2 );
 // One-time migration includes every child profile, even those absent from the menu.
@@ -163,4 +166,30 @@ add_action( 'admin_init', function () {
     }
     update_option( 'unthunk_musicians_migrated_v1', 1 );
     flush_rewrite_rules();
+} );
+
+// Initialize the requested flags once from the existing Musicians submenu.
+// Later checkbox edits remain independent of navigation membership.
+add_action( 'admin_init', function () {
+    if ( ! current_user_can( 'manage_options' ) || get_option( 'unthunk_musician_active_initialized_v2' ) ) { return; }
+    $locations = get_nav_menu_locations();
+    if ( empty( $locations['primary'] ) ) { return; }
+    $items = wp_get_nav_menu_items( $locations['primary'] );
+    $page = get_page_by_path( 'musicians' );
+    if ( ! $page ) { return; }
+    $parent = 0;
+    foreach ( (array) $items as $item ) { if ( absint( $item->object_id ) === $page->ID ) { $parent = $item->ID; break; } }
+    if ( ! $parent ) { return; }
+    foreach ( get_posts( array( 'post_type' => 'musician', 'post_status' => array( 'publish', 'draft', 'private', 'pending', 'future' ), 'numberposts' => -1, 'fields' => 'ids' ) ) as $id ) {
+        update_post_meta( $id, '_unthunk_musician_active', '0' );
+        update_post_meta( $id, '_unthunk_musician_homepage', '0' );
+    }
+    // Snapshot of the seven submenu profiles selected by the administrator.
+    foreach ( array( 1026, 288, 1024, 997, 34, 2131, 25 ) as $id ) {
+        if ( get_post_type( $id ) === 'musician' ) {
+            update_post_meta( $id, '_unthunk_musician_active', '1' );
+            update_post_meta( $id, '_unthunk_musician_homepage', '1' );
+        }
+    }
+    update_option( 'unthunk_musician_active_initialized_v2', 1 );
 } );
