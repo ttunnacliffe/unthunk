@@ -2,10 +2,21 @@
 /**
  * Plugin Name: Unthunk Site
  * Description: Preserves Unthunk releases, tracks, legacy URLs and the contact form independently of the theme.
- * Version: 1.0.0
+ * Version: 1.0.1
  * License: GPL-2.0-or-later
  */
 defined( 'ABSPATH' ) || exit;
+// Disable new comments and pingbacks everywhere, including existing content.
+add_filter( 'comments_open', '__return_false', PHP_INT_MAX, 2 );
+add_filter( 'pings_open', '__return_false', PHP_INT_MAX, 2 );
+add_filter( 'comments_array', '__return_empty_array', PHP_INT_MAX, 2 );
+add_filter( 'get_comments_number', '__return_zero', PHP_INT_MAX, 2 );
+add_action( 'init', function () {
+    foreach ( get_post_types() as $type ) {
+        remove_post_type_support( $type, 'comments' );
+        remove_post_type_support( $type, 'trackbacks' );
+    }
+}, 100 );
 function unthunk_register_content() {
     $shared = array( 'public' => true, 'has_archive' => true, 'show_in_rest' => true, 'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'custom-fields', 'revisions' ) );
     if ( ! post_type_exists( 'project' ) ) { register_post_type( 'project', array_merge( $shared, array( 'label' => 'Releases', 'rewrite' => array( 'slug' => 'item' ) ) ) ); }

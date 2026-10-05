@@ -18,7 +18,7 @@ function unthunk_option( $key, $fallback = '' ) {
     return is_array( $options ) && isset( $options[ $key ] ) ? $options[ $key ] : $fallback;
 }
 add_filter( 'generate_sidebar_layout', function ( $layout ) {
-    return is_front_page() || is_singular( array( 'project', 'tracks' ) ) ? 'no-sidebar' : $layout;
+    return is_front_page() || is_page( 'about-us' ) || is_singular( array( 'project', 'tracks' ) ) ? 'no-sidebar' : $layout;
 } );
 add_filter( 'body_class', function ( $classes ) {
     if ( is_front_page() ) { $classes[] = 'un-home'; }
