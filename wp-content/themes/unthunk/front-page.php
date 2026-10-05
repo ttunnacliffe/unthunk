@@ -26,10 +26,6 @@
             </article>
         <?php endwhile; wp_reset_postdata(); ?>
         </div>
-        <?php if ( unthunk_option( 'portfolio_cta' ) ) : ?>
-            <div class="un-copy"><p><?php echo esc_html( unthunk_option( 'cta_content' ) ); ?></p>
-            <?php if ( unthunk_option( 'cta_button_url' ) ) : ?><a href="<?php echo esc_url( unthunk_option( 'cta_button_url' ) ); ?>"><?php echo esc_html( unthunk_option( 'cta_button_text', 'Get in touch' ) ); ?></a><?php endif; ?></div>
-        <?php endif; ?>
     </section>
     <?php if ( unthunk_option( 'about_content' ) || post_type_exists( 'musician' ) ) : ?>
     <section id="about" class="un-section">
@@ -52,6 +48,7 @@
     </section>
     <section id="contact" class="un-section un-copy"><span id="cta-contact"></span>
         <h2><?php echo esc_html( unthunk_option( 'contact_title', 'Get in touch' ) ); ?></h2>
+        <p>To hear, record or perform Unthunk material, get in touch. We're happy to provide scores and high resolution audio files.</p>
         <?php if ( shortcode_exists( 'unthunk_contact' ) ) { echo do_shortcode( '[unthunk_contact]' ); } ?>
     </section>
 </main>
