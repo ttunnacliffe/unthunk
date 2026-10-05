@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Unthunk Site
  * Description: Preserves Unthunk releases, tracks, legacy URLs and the contact form independently of the theme.
- * Version: 1.1.2
+ * Version: 1.1.3
  * License: GPL-2.0-or-later
  */
 defined( 'ABSPATH' ) || exit;
@@ -193,3 +193,36 @@ add_action( 'admin_init', function () {
     }
     update_option( 'unthunk_musician_active_initialized_v2', 1 );
 } );
+
+// Move the existing posts page and insert an editable News navigation item once.
+add_action( 'admin_init', function () {
+    if ( ! current_user_can( 'manage_options' ) || get_option( 'unthunk_blog_menu_migrated_v1' ) ) { return; }
+    $blog = absint( get_option( 'page_for_posts' ) );
+    $locations = get_nav_menu_locations();
+    if ( ! $blog || empty( $locations['primary'] ) ) { return; }
+    $result = wp_update_post( array( 'ID' => $blog, 'post_parent' => 0, 'post_name' => 'blog' ), true );
+    if ( is_wp_error( $result ) ) { return; }
+    $menu = $locations['primary'];
+    $items = wp_get_nav_menu_items( $menu );
+    $about = get_page_by_path( 'about-us' );
+    $news = 0;
+    foreach ( (array) $items as $item ) { if ( absint( $item->object_id ) === $blog && $item->type === 'post_type' ) { $news = $item->ID; break; } }
+    $news = wp_update_nav_menu_item( $menu, $news, array( 'menu-item-object-id' => $blog, 'menu-item-object' => 'page', 'menu-item-type' => 'post_type', 'menu-item-title' => 'News', 'menu-item-parent-id' => 0, 'menu-item-status' => 'publish' ) );
+    if ( is_wp_error( $news ) ) { return; }
+    $position = 1;
+    foreach ( (array) $items as $item ) {
+        if ( $item->ID === $news ) { continue; }
+        wp_update_post( array( 'ID' => $item->ID, 'menu_order' => $position++ ) );
+        if ( $about && absint( $item->object_id ) === $about->ID ) { wp_update_post( array( 'ID' => $news, 'menu_order' => $position++ ) ); }
+    }
+    update_option( 'unthunk_blog_menu_migrated_v1', 1 );
+    flush_rewrite_rules();
+} );
+// Keep bookmarks and paginated links to the former blog address working.
+add_action( 'template_redirect', function () {
+    $path = wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH );
+    if ( preg_match( '#^/about-us/blog(/.*)?$#', $path, $match ) ) {
+        wp_safe_redirect( home_url( '/blog' . ( $match[1] ?? '/' ) ), 301 );
+        exit;
+    }
+}, 1 );
