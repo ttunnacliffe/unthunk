@@ -3,7 +3,7 @@ Theme Name: Unthunk
 Description: A simple music-focused GeneratePress child theme for Unthunk.
 Author: Trevor Tunnacliffe
 Template: generatepress
-Version: 1.0.0
+Version: 1.0.1
 Text Domain: unthunk
 License: GNU General Public License v2 or later
 */
@@ -19,6 +19,11 @@ h1{font-size:clamp(2.5rem,6vw,4.5rem)}h2{font-size:clamp(2rem,4vw,3rem)}h3{font-
 .site.grid-container{max-width:1180px}.un-home .site-content{display:block}.un-home .content-area{width:100%}
 .un-wrap{max-width:1120px;margin:auto;padding:0 32px}.un-section{padding:72px 0;border-bottom:1px solid var(--un-line)}
 .un-hero{padding:88px 0 64px}.un-hero p{max-width:650px;font-size:1.2rem}.un-kicker{font-size:.8rem!important;text-transform:uppercase;letter-spacing:.16em;color:var(--un-muted)}
+.un-hero{position:relative;isolation:isolate;min-height:540px;display:flex;align-items:center;margin:0 -32px;padding:72px 40px;overflow:hidden;background:#233831;color:#fff}
+.un-hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2}
+.un-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,24,21,.82),rgba(12,24,21,.38));z-index:-1}
+.un-hero-content{max-width:700px}.un-hero .un-kicker{color:#e0e9e3}.un-hero .un-button{background:var(--un-paper);color:var(--un-ink)}
+@media(max-width:540px){.un-hero{margin:0 -22px;padding:48px 22px;min-height:440px}.un-hero::before{background:rgba(12,24,21,.65)}}
 .un-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 28px}.un-release img{width:100%;aspect-ratio:1;object-fit:cover;display:block}.un-release h3{margin:18px 0 8px}.un-release a{text-decoration:none}.un-release a:hover{text-decoration:underline}
 .un-card-placeholder{aspect-ratio:1;background:var(--un-line);display:grid;place-items:center;padding:24px;font-family:Georgia,serif;font-size:2rem}
 .un-copy{max-width:760px}.un-members{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.un-member{padding-top:18px;border-top:1px solid var(--un-line)}.un-member h3{font-size:1.25rem;margin-bottom:8px}

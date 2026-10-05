@@ -1,6 +1,8 @@
 <?php defined( 'ABSPATH' ) || exit; get_header(); ?>
 <main id="main" class="site-main un-wrap">
     <section class="un-hero">
+        <?php if ( has_post_thumbnail( 2138 ) ) { echo get_the_post_thumbnail( 2138, 'full', array( 'class' => 'un-hero-image', 'alt' => '', 'loading' => 'eager', 'fetchpriority' => 'high' ) ); } ?>
+        <div class="un-hero-content">
         <p class="un-kicker">Chamber + popular music</p>
         <h1><?php bloginfo( 'name' ); ?></h1>
         <?php
@@ -9,6 +11,7 @@
         ?>
         <p><?php echo esc_html( $description ?: "Unthunk is an identifier for Trevor Tunnacliffe's musical endeavours." ); ?></p>
         <a class="un-button" href="#portfolio">Explore releases</a>
+        </div>
     </section>
     <section id="portfolio" class="un-section" aria-labelledby="releases-heading">
         <h2 id="releases-heading"><?php echo esc_html( unthunk_option( 'portfolio_title', 'Releases' ) ); ?></h2>
