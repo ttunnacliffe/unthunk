@@ -3,7 +3,7 @@ Theme Name: Unthunk
 Description: A simple music-focused GeneratePress child theme for Unthunk.
 Author: Trevor Tunnacliffe
 Template: generatepress
-Version: 1.0.3
+Version: 1.0.4
 Text Domain: unthunk
 License: GNU General Public License v2 or later
 */
@@ -30,5 +30,6 @@ h1{font-size:clamp(2.5rem,6vw,4.5rem)}h2{font-size:clamp(2rem,4vw,3rem)}h3{font-
 .un-release-layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(220px,1fr);gap:48px}.un-track-list{list-style:none;margin:0;padding:0}.un-track-list li{padding:10px 0;border-bottom:1px solid var(--un-line)}.un-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:32px}.un-gallery img{width:100%;height:auto}
 .un-news time{font-size:.85rem;color:var(--un-muted)}.un-news h3{margin:12px 0}.un-contact label{display:block;margin:16px 0 6px}.un-contact input,.un-contact textarea{width:100%;background:#fff;border:1px solid var(--un-line);border-radius:3px}.un-contact button,.un-button{display:inline-block;background:var(--un-accent);color:white;padding:12px 22px;border-radius:3px;text-decoration:none}.un-contact button:hover,.un-button:hover{background:var(--un-ink);color:white}.un-contact button{margin-top:20px}.un-trap{position:absolute;left:-9999px}.un-notice{padding:16px;border:1px solid var(--un-line)}
 :focus-visible{outline:3px solid var(--un-accent);outline-offset:4px}.site-info{border-top:1px solid var(--un-line)}
+.un-musician-list{list-style:none;margin:32px 0 0;padding:0;max-width:760px}.un-musician-list li{border-top:1px solid var(--un-line)}.un-musician-list li:last-child{border-bottom:1px solid var(--un-line)}.un-musician-list a{display:block;padding:16px 0;font-family:Georgia,serif;font-size:1.4rem;text-decoration:none}.un-musician-list a:hover{text-decoration:underline}
 @media(max-width:850px){.un-grid,.un-members{grid-template-columns:repeat(2,minmax(0,1fr))}.un-release-layout{grid-template-columns:1fr}.un-section{padding:48px 0}.un-hero{padding-top:56px}}
 @media(max-width:540px){.un-grid,.un-members{grid-template-columns:1fr}.un-wrap{padding:0 22px}.un-gallery{grid-template-columns:1fr}.inside-header{padding:22px}.un-hero p{font-size:1.05rem}}
