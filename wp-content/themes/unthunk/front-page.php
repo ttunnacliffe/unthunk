@@ -15,7 +15,7 @@
     <section id="portfolio" class="un-section" aria-labelledby="releases-heading">
         <h2 id="releases-heading"><?php echo esc_html( unthunk_option( 'portfolio_title', 'Releases' ) ); ?></h2>
         <div class="un-grid">
-        <?php $releases = new WP_Query( array( 'post_type' => 'project', 'posts_per_page' => -1, 'orderby' => 'date', 'order' => 'DESC' ) );
+        <?php $releases = new WP_Query( array( 'post_type' => 'project', 'posts_per_page' => -1, 'orderby' => 'date', 'order' => 'DESC', 'meta_query' => array( 'relation' => 'OR', array( 'key' => '_unthunk_include_in_menu', 'compare' => 'NOT EXISTS' ), array( 'key' => '_unthunk_include_in_menu', 'value' => '0', 'compare' => '!=' ) ) ) );
         while ( $releases->have_posts() ) : $releases->the_post(); ?>
             <article class="un-release">
                 <a href="<?php the_permalink(); ?>">

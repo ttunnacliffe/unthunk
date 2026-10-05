@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Unthunk Site
  * Description: Preserves Unthunk releases, tracks, legacy URLs and the contact form independently of the theme.
- * Version: 1.0.1
+ * Version: 1.0.2
  * License: GPL-2.0-or-later
  */
 defined( 'ABSPATH' ) || exit;
@@ -28,6 +28,19 @@ function unthunk_register_content() {
 add_action( 'init', 'unthunk_register_content', 20 );
 register_activation_hook( __FILE__, function () { unthunk_register_content(); flush_rewrite_rules(); } );
 add_action( 'after_switch_theme', function () { unthunk_register_content(); flush_rewrite_rules(); } );
+
+// Missing metadata keeps existing and new releases included by default.
+add_action( 'add_meta_boxes_project', function () {
+    add_meta_box( 'unthunk-homepage', 'Homepage visibility', function ( $post ) {
+        wp_nonce_field( 'unthunk_homepage', 'unthunk_homepage_nonce' );
+        echo '<label><input type="checkbox" name="unthunk_include_in_menu" value="1" ' . checked( get_post_meta( $post->ID, '_unthunk_include_in_menu', true ) !== '0', true, false ) . '> Include in menu</label>';
+        echo '<p class="description">Show this project on the home page. Uncheck to hide it from the home page while keeping its own page available.</p>';
+    }, 'project', 'side', 'high' );
+} );
+add_action( 'save_post_project', function ( $id ) {
+    if ( wp_is_post_revision( $id ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ! current_user_can( 'edit_post', $id ) || empty( $_POST['unthunk_homepage_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['unthunk_homepage_nonce'] ) ), 'unthunk_homepage' ) ) { return; }
+    update_post_meta( $id, '_unthunk_include_in_menu', isset( $_POST['unthunk_include_in_menu'] ) ? '1' : '0' );
+} );
 
 // Retain editing of release-to-track relationships without the old theme's Meta Box library.
 add_action( 'add_meta_boxes_project', function () {
