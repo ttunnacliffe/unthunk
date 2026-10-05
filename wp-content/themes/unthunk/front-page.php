@@ -34,7 +34,7 @@
         <?php $members = new WP_Query( array( 'post_type' => 'musician', 'posts_per_page' => -1, 'orderby' => array( 'menu_order' => 'ASC', 'title' => 'ASC' ), 'meta_query' => array( 'relation' => 'OR', array( 'key' => '_unthunk_musician_homepage', 'compare' => 'NOT EXISTS' ), array( 'key' => '_unthunk_musician_homepage', 'value' => '0', 'compare' => '!=' ) ) ) ); ?>
         <?php if ( $members->have_posts() ) : ?><div class="un-members">
         <?php while ( $members->have_posts() ) : $members->the_post(); ?>
-            <article class="un-member"><a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'medium' ); ?><h3><?php the_title(); ?></h3></a><p><?php echo esc_html( get_post_meta( get_the_ID(), '_unthunk_instrument', true ) ); ?></p><?php the_content(); ?></article>
+            <article class="un-member"><a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'medium' ); ?><h3><?php the_title(); ?></h3></a><?php the_content(); ?></article>
         <?php endwhile; wp_reset_postdata(); ?></div><?php endif; ?>
     </section><?php endif; ?>
     <section id="news" class="un-section">
