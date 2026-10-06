@@ -3,7 +3,7 @@ Theme Name: Unthunk
 Description: A simple music-focused GeneratePress child theme for Unthunk.
 Author: Trevor Tunnacliffe
 Template: generatepress
-Version: 1.2.1
+Version: 1.2.2
 Text Domain: unthunk
 License: GNU General Public License v2 or later
 */
@@ -40,3 +40,5 @@ h1{font-size:clamp(2.5rem,6vw,4.5rem)}h2{font-size:clamp(2rem,4vw,3rem)}h3{font-
 /* Match navigation states to the Listen featured button. */
 .main-navigation .main-nav ul li[class*="current-menu-"] > a{color:var(--un-accent)}
 #site-navigation .main-nav ul li:hover > a,#site-navigation .main-nav ul li:focus-within > a,#site-navigation .main-nav ul li.sfHover > a{color:#4c7567}
+
+.main-navigation .main-nav ul li a{font-weight:600}
