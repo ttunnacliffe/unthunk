@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Unthunk Site
  * Description: Preserves Unthunk releases, tracks, legacy URLs and the contact form independently of the theme.
- * Version: 1.2.0
+ * Version: 1.2.1
  * License: GPL-2.0-or-later
  */
 defined( 'ABSPATH' ) || exit;

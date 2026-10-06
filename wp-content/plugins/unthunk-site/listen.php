@@ -49,7 +49,7 @@ add_shortcode( 'unthunk_listen', function () {
         if ( $large && has_post_thumbnail( $post ) ) { $html .= get_the_post_thumbnail( $post, 'large' ); }
         $html .= '<div>' . ( $large ? '<p class="un-kicker">Featured service</p>' : '' ) . '<h' . ( $large ? '2' : '3' ) . '>' . esc_html( $post->post_title ) . '</h' . ( $large ? '2' : '3' ) . '>';
         $html .= wpautop( wp_kses_post( $post->post_content ) );
-        $html .= '<a class="' . ( $large ? 'un-button' : 'un-listen-link' ) . '" href="' . esc_url( $url ) . '">Listen on ' . esc_html( $post->post_title ) . ' ↗</a></div></article>';
+        $html .= '<a class="' . ( $large ? 'un-button' : 'un-listen-link' ) . '" target="_blank" rel="noopener noreferrer" href="' . esc_url( $url ) . '">Listen on ' . esc_html( $post->post_title ) . ' ↗</a></div></article>';
         return $html;
     };
     $html = '<div class="un-listen">'; $other = '';
