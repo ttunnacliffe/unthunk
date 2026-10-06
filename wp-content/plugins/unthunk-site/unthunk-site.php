@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Unthunk Site
  * Description: Preserves Unthunk releases, tracks, legacy URLs and the contact form independently of the theme.
- * Version: 1.1.3
+ * Version: 1.2.0
  * License: GPL-2.0-or-later
  */
 defined( 'ABSPATH' ) || exit;
@@ -226,3 +226,5 @@ add_action( 'template_redirect', function () {
         exit;
     }
 }, 1 );
+
+require_once __DIR__ . '/listen.php';
