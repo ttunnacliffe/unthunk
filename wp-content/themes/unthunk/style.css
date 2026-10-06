@@ -39,4 +39,4 @@ h1{font-size:clamp(2.5rem,6vw,4.5rem)}h2{font-size:clamp(2rem,4vw,3rem)}h3{font-
 
 /* Match navigation states to the Listen featured button. */
 .main-navigation .main-nav ul li[class*="current-menu-"] > a{color:var(--un-accent)}
-.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus-within > a,.main-navigation .main-nav ul li.sfHover > a{color:#4c7567}
+#site-navigation .main-nav ul li:hover > a,#site-navigation .main-nav ul li:focus-within > a,#site-navigation .main-nav ul li.sfHover > a{color:#4c7567}
