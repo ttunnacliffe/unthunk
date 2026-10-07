@@ -3,7 +3,7 @@ Theme Name: Unthunk
 Description: A simple music-focused GeneratePress child theme for Unthunk.
 Author: Trevor Tunnacliffe
 Template: generatepress
-Version: 1.2.4
+Version: 1.2.5
 Text Domain: unthunk
 License: GNU General Public License v2 or later
 */
@@ -38,7 +38,7 @@ h1{font-size:clamp(2.5rem,6vw,4.5rem)}h2{font-size:clamp(2rem,4vw,3rem)}h3{font-
 .un-listen-featured{padding:40px;background:#edf0e8;border:1px solid var(--un-line);margin:32px 0 60px}.un-listen-featured:has(img){display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}.un-listen-featured img{width:100%;aspect-ratio:1;object-fit:cover}.un-listen-featured h2{margin:12px 0 20px}.un-listen-featured p{max-width:650px}.un-listen-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.un-listen-service{padding:24px 0;border-top:1px solid var(--un-line)}.un-listen-service h3{margin-bottom:16px}.un-listen-link{font-size:1rem}@media(max-width:700px){.un-listen-featured{padding:26px}.un-listen-featured:has(img),.un-listen-grid{grid-template-columns:1fr}}
 
 /* Match navigation states to the Listen featured button. */
-.main-navigation .main-nav ul li[class*="current-menu-"] > a{color:#5B3641}
+.main-navigation .main-nav ul li[class*="current-menu-"] > a{color:#558373}
 #site-navigation .main-nav ul li:hover > a,#site-navigation .main-nav ul li:focus-within > a,#site-navigation .main-nav ul li.sfHover > a{color:#79a898}
 
 .main-navigation .main-nav ul li a{font-weight:400}
