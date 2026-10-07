@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Unthunk Site
  * Description: Preserves Unthunk releases, tracks, legacy URLs and the contact form independently of the theme.
- * Version: 1.2.1
+ * Version: 1.3.0
  * License: GPL-2.0-or-later
  */
 defined( 'ABSPATH' ) || exit;
@@ -62,11 +62,15 @@ add_action( 'save_post_project', function ( $id ) {
     delete_post_meta( $id, 't_one_track' ); foreach ( $ordered as $track ) { add_post_meta( $id, 't_one_track', $track ); }
 } );
 
+require_once __DIR__ . '/security.php';
+
 add_shortcode( 'unthunk_contact', function () {
     ob_start();
     $state = isset( $_GET['unthunk_contact'] ) ? sanitize_key( wp_unslash( $_GET['unthunk_contact'] ) ) : '';
     if ( $state ) { echo '<p class="un-notice" role="status">' . esc_html( $state === 'sent' ? 'Thank you. Your message has been sent.' : 'Your message could not be sent. Please try again shortly.' ) . '</p>'; }
     ?>
+    <?php if ( ! unthunk_recaptcha_ready() ) { echo '<p>Our contact form is temporarily unavailable. Please try again later.</p>'; return ob_get_clean(); }
+    wp_enqueue_script( 'unthunk-recaptcha', 'https://www.google.com/recaptcha/api.js', array(), null, true ); ?>
     <form class="un-contact" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
         <input type="hidden" name="action" value="unthunk_contact">
         <?php wp_nonce_field( 'unthunk_contact', 'unthunk_nonce' ); ?>
@@ -75,6 +79,7 @@ add_shortcode( 'unthunk_contact', function () {
         <label for="un-phone">Phone (optional)</label><input id="un-phone" name="phone" type="tel" autocomplete="tel" maxlength="60">
         <label for="un-message">Message</label><textarea id="un-message" name="message" rows="6" maxlength="10000" required></textarea>
         <div class="un-trap" aria-hidden="true"><label for="un-website">Leave this field empty</label><input id="un-website" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="g-recaptcha" data-sitekey="<?php echo esc_attr( unthunk_recaptcha_key( 'site' ) ); ?>"></div>
         <button type="submit">Send message</button>
     </form>
     <?php return ob_get_clean();
@@ -87,7 +92,7 @@ function unthunk_contact_submit() {
     $message = isset( $_POST['message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['message'] ) ) : '';
     $phone = isset( $_POST['phone'] ) ? sanitize_text_field( wp_unslash( $_POST['phone'] ) ) : '';
     $rate_key = 'unthunk_contact_' . hash_hmac( 'sha256', isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : '', wp_salt() );
-    if ( wp_verify_nonce( $nonce, 'unthunk_contact' ) && empty( $_POST['website'] ) && $name && is_email( $email ) && $message && strlen( $message ) <= 10000 && ! get_transient( $rate_key ) ) {
+    if ( wp_verify_nonce( $nonce, 'unthunk_contact' ) && empty( $_POST['website'] ) && $name && is_email( $email ) && $message && strlen( $message ) <= 10000 && ! get_transient( $rate_key ) && unthunk_recaptcha_verify() ) {
         set_transient( $rate_key, 1, MINUTE_IN_SECONDS );
         $options = get_option( 't_one_options', array() );
         $recipient = is_array( $options ) && ! empty( $options['contact_email'] ) ? sanitize_email( $options['contact_email'] ) : get_option( 'admin_email' );
