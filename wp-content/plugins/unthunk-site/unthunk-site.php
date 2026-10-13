@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Unthunk Site
  * Description: Preserves Unthunk releases, tracks, legacy URLs and the contact form independently of the theme.
- * Version: 1.3.0
+ * Version: 1.3.1
  * License: GPL-2.0-or-later
  */
 defined( 'ABSPATH' ) || exit;
@@ -67,7 +67,7 @@ require_once __DIR__ . '/security.php';
 add_shortcode( 'unthunk_contact', function () {
     ob_start();
     $state = isset( $_GET['unthunk_contact'] ) ? sanitize_key( wp_unslash( $_GET['unthunk_contact'] ) ) : '';
-    if ( $state ) { echo '<p class="un-notice" role="status">' . esc_html( $state === 'sent' ? 'Thank you. Your message has been sent.' : 'Your message could not be sent. Please try again shortly.' ) . '</p>'; }
+    if ( $state ) { echo '<p class="un-notice" role="status">' . esc_html( $state === 'sent' ? 'Thank you. Your message has been sent.' : ( $state === 'limited' ? 'Please wait one hour between messages, then try again.' : 'Your message could not be sent. Please try again later.' ) ) . '</p>'; }
     ?>
     <?php if ( ! unthunk_recaptcha_ready() ) { echo '<p>Our contact form is temporarily unavailable. Please try again later.</p>'; return ob_get_clean(); }
     wp_enqueue_script( 'unthunk-recaptcha', 'https://www.google.com/recaptcha/api.js', array(), null, true ); ?>
@@ -84,6 +84,67 @@ add_shortcode( 'unthunk_contact', function () {
     </form>
     <?php return ob_get_clean();
 } );
+
+// Trust forwarded visitor IP/country only when the immediate peer is Cloudflare.
+// Cloudflare's published IPv4/IPv6 ranges, checked 2026-10-13.
+function unthunk_contact_cloudflare_peer() {
+    $peer = inet_pton( $_SERVER['REMOTE_ADDR'] ?? '' );
+    if ( $peer === false ) { return false; }
+    $ranges = array( '173.245.48.0/20', '103.21.244.0/22', '103.22.200.0/22', '103.31.4.0/22', '141.101.64.0/18', '108.162.192.0/18', '190.93.240.0/20', '188.114.96.0/20', '197.234.240.0/22', '198.41.128.0/17', '162.158.0.0/15', '104.16.0.0/13', '104.24.0.0/14', '172.64.0.0/13', '131.0.72.0/22', '2400:cb00::/32', '2606:4700::/32', '2803:f800::/32', '2405:b500::/32', '2405:8100::/32', '2a06:98c0::/29', '2c0f:f248::/32' );
+    foreach ( $ranges as $range ) {
+        list( $network, $bits ) = explode( '/', $range );
+        $network = inet_pton( $network );
+        if ( strlen( $peer ) !== strlen( $network ) ) { continue; }
+        $bytes = intdiv( (int) $bits, 8 );
+        $remaining = (int) $bits % 8;
+        if ( substr( $peer, 0, $bytes ) === substr( $network, 0, $bytes ) && ( ! $remaining || ( ord( $peer[$bytes] ) & ( 255 << ( 8 - $remaining ) ) ) === ( ord( $network[$bytes] ) & ( 255 << ( 8 - $remaining ) ) ) ) ) { return true; }
+    }
+    return false;
+}
+function unthunk_contact_client_ip() {
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+    if ( unthunk_contact_cloudflare_peer() ) {
+        $forwarded = $_SERVER['HTTP_CF_CONNECTING_IPV6'] ?? ( $_SERVER['HTTP_CF_CONNECTING_IP'] ?? '' );
+        if ( filter_var( $forwarded, FILTER_VALIDATE_IP ) ) { $ip = $forwarded; }
+    }
+    $packed = @inet_pton( $ip );
+    return $packed === false ? 'unknown' : inet_ntop( $packed );
+}
+function unthunk_contact_spam( $text ) {
+    // Cyrillic is a script, not an exact Russian-language classifier.
+    return preg_match( '/\p{Cyrillic}/u', $text ) === 1 || ( unthunk_contact_cloudflare_peer() && strtoupper( $_SERVER['HTTP_CF_IPCOUNTRY'] ?? '' ) === 'RU' );
+}
+function unthunk_contact_rate_keys( $ip, $email ) {
+    return array_map( function ( $value ) { return 'un_contact_hour_' . hash_hmac( 'sha256', $value, wp_salt() ); }, array( 'ip:' . $ip, 'email:' . strtolower( trim( $email ) ) ) );
+}
+function unthunk_contact_rate_limited( $ip, $email ) {
+    foreach ( unthunk_contact_rate_keys( $ip, $email ) as $key ) {
+        if ( get_transient( $key ) ) { return true; }
+    }
+    return false;
+}
+function unthunk_contact_claim_slot( $ip, $email ) {
+    global $wpdb;
+    $keys = unthunk_contact_rate_keys( $ip, $email );
+    sort( $keys );
+    $locks = array();
+    // Serialize concurrent submissions, including requests on different PHP workers.
+    try {
+        foreach ( $keys as $key ) {
+            $lock = 'un_contact_' . substr( hash( 'sha256', $wpdb->prefix . $key ), 0, 48 );
+            if ( (int) $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s, 0)', $lock ) ) !== 1 ) { return false; }
+            $locks[] = $lock;
+        }
+        if ( unthunk_contact_rate_limited( $ip, $email ) ) { return false; }
+        foreach ( $keys as $key ) {
+            if ( ! set_transient( $key, 1, HOUR_IN_SECONDS ) ) { return false; }
+        }
+        return true;
+    } finally {
+        foreach ( $locks as $lock ) { $wpdb->get_var( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $lock ) ); }
+    }
+}
+
 function unthunk_contact_submit() {
     $status = 'error';
     $nonce = isset( $_POST['unthunk_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['unthunk_nonce'] ) ) : '';
@@ -91,17 +152,27 @@ function unthunk_contact_submit() {
     $email = isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
     $message = isset( $_POST['message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['message'] ) ) : '';
     $phone = isset( $_POST['phone'] ) ? sanitize_text_field( wp_unslash( $_POST['phone'] ) ) : '';
-    $rate_key = 'unthunk_contact_' . hash_hmac( 'sha256', isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : '', wp_salt() );
-    if ( wp_verify_nonce( $nonce, 'unthunk_contact' ) && empty( $_POST['website'] ) && $name && is_email( $email ) && $message && strlen( $message ) <= 10000 && ! get_transient( $rate_key ) && unthunk_recaptcha_verify() ) {
-        set_transient( $rate_key, 1, MINUTE_IN_SECONDS );
-        $options = get_option( 't_one_options', array() );
-        $recipient = is_array( $options ) && ! empty( $options['contact_email'] ) ? sanitize_email( $options['contact_email'] ) : get_option( 'admin_email' );
-        if ( is_email( $recipient ) && wp_mail( $recipient, 'Unthunk website message', "Name: $name\nEmail: $email\nPhone: $phone\n\n$message", array( 'Reply-To: ' . $email ) ) ) { $status = 'sent'; }
+    $ip = unthunk_contact_client_ip();
+    if ( wp_verify_nonce( $nonce, 'unthunk_contact' ) && empty( $_POST['website'] ) && $name && is_email( $email ) && $message && strlen( $message ) <= 10000 && ! unthunk_contact_spam( $name . "\n" . $message ) ) {
+        if ( unthunk_contact_rate_limited( $ip, $email ) ) {
+            $status = 'limited';
+        } elseif ( unthunk_recaptcha_verify() && unthunk_contact_claim_slot( $ip, $email ) ) {
+            $options = get_option( 't_one_options', array() );
+            $recipient = is_array( $options ) && ! empty( $options['contact_email'] ) ? sanitize_email( $options['contact_email'] ) : get_option( 'admin_email' );
+            if ( is_email( $recipient ) && wp_mail( $recipient, 'Unthunk website message', "Name: $name\nEmail: $email\nPhone: $phone\n\n$message", array( 'Reply-To: ' . $email ) ) ) { $status = 'sent'; }
+        }
     }
     wp_safe_redirect( home_url( '/?unthunk_contact=' . $status . '#contact' ) ); exit;
 }
 add_action( 'admin_post_unthunk_contact', 'unthunk_contact_submit' );
 add_action( 'admin_post_nopriv_unthunk_contact', 'unthunk_contact_submit' );
+
+// Show the current contact policy beside the existing reCAPTCHA settings.
+add_action( 'admin_notices', function () {
+    if ( current_user_can( 'manage_options' ) && ( $_GET['page'] ?? '' ) === 'unthunk-security' ) {
+        echo '<div class="notice notice-info"><p><strong>Contact spam protection:</strong> One accepted submission per hour per IP address and email address. Cyrillic text in names or messages is blocked. Russia-origin contact submissions are blocked when a trusted Cloudflare country header is available. reCAPTCHA remains required.</p></div>';
+    }
+} );
 
 // Musicians are independent of the theme; title, featured image and editor hold
 // the name, image and optional description.
